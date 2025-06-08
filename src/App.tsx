@@ -4,7 +4,7 @@ import FilterProvider from "./context/FilterContext";
 import Dashboard from "./components/Dashboard";
 import "./App.css";
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <FilterProvider>
@@ -17,6 +17,6 @@ function App() {
       </FilterProvider>
     </>
   );
-}
+};
 
 export default App;
