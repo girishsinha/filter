@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useFilterContext } from "../context/FilterContext";
 import Multiselect from "multiselect-react-dropdown";
 
@@ -10,12 +10,15 @@ const FilterDropdown: React.FC<Props> = ({ column }) => {
   const { filters, setFilter, options } = useFilterContext();
 
   const selectedValues = filters[column] || [];
-  const allOptions = options[column].map((val) => ({
-    id: val,
-    name: String(val),
-  }));
-  const selectedOptions = allOptions.filter((opt) =>
-    selectedValues.includes(opt.id)
+
+  const allOptions = useMemo(
+    () => options[column].map((val) => ({ id: val, name: String(val) })),
+    [options, column]
+  );
+
+  const selectedOptions = useMemo(
+    () => allOptions.filter((opt) => selectedValues.includes(opt.id)),
+    [allOptions, selectedValues]
   );
 
   const handleSelect = (selected: { id: number; name: string }[]) => {

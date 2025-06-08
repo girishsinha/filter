@@ -1,4 +1,3 @@
-// src/context/FilterContext.tsx
 import React, { createContext, useContext, useEffect, useState } from "react";
 import data from "../data/dataset_small.json"; // We’ll convert CSV to JSON
 
